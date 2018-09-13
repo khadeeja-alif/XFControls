@@ -166,6 +166,32 @@ namespace AsNum.XFControls
         }
         #endregion
 
+        #region textColor
+        public static readonly BindableProperty FontSizeProperty =
+            BindableProperty.Create("FontSize",
+                typeof(double),
+                typeof(Radio),
+                16D,
+                propertyChanged: FontSizeChanged);
+
+        public double FontSize
+        {
+            get
+            {
+                return (double)this.GetValue(FontSizeProperty);
+            }
+            set
+            {
+                this.SetValue(FontSizeProperty, value);
+            }
+        }
+        private static void FontSizeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var chk = (Radio)bindable;
+            chk.Lbl.FontSize = (double)newValue;
+        }
+        #endregion
+
         #region Size
         /// <summary>
         /// 单选按钮的大小, 对标签文本无效
